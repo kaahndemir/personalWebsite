@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e5d1448d.css",
+    "main.js": "/static/js/main.b9c0ffea.js",
+    "static/js/787.5809834d.chunk.js": "/static/js/787.5809834d.chunk.js",
+    "static/media/sf-pro-medium.OTF": "/static/media/sf-pro-medium.b85d841dacb040b84951.OTF",
+    "static/media/sf-pro-bold.OTF": "/static/media/sf-pro-bold.b1f4d2c69fa808ebca12.OTF",
+    "static/media/sf-pro-regular.OTF": "/static/media/sf-pro-regular.d1f5e6e16dd4f75c3950.OTF",
+    "static/media/hatmedecem-project.png": "/static/media/hatmedecem-project.b0d5cffde0c7687d71de.png",
+    "static/media/robot-mascot.svg": "/static/media/robot-mascot.3d8b70715b315d5f9139cd3080ca66d1.svg",
+    "static/media/codeoguz-photo.jpg": "/static/media/codeoguz-photo.3d815062c853bf7f2adc.jpg",
+    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "static/media/React-icon.svg": "/static/media/React-icon.369d5a73634fd73bf30aa0b70c0e90b4.svg",
+    "static/media/Python-icon.svg": "/static/media/Python-icon.767bee3cfa1c9da2f149ad2efc22963b.svg",
+    "static/media/mail-icon.svg": "/static/media/mail-icon.219714ec29c39a370e5facc0d5182faf.svg",
+    "static/media/css-icon.svg": "/static/media/css-icon.4a42d94d5434e4eaf5a06c019af654aa.svg",
+    "static/media/firebase.svg": "/static/media/firebase.3f3e256e0849b6965b170db306ded132.svg",
+    "static/media/flutter-icon.svg": "/static/media/flutter-icon.e9b1615ce10cdcc41cc73fad0275b085.svg",
+    "index.html": "/index.html",
+    "static/media/html-icon.svg": "/static/media/html-icon.bebff384db1a99b92727f6dd032fa279.svg",
+    "static/media/codeoguz-icon.svg": "/static/media/codeoguz-icon.21b97a4b712676490e816b4309a618f8.svg",
+    "static/media/discord-icon.svg": "/static/media/discord-icon.26b9452da7765d0a6fad551854273a86.svg",
+    "static/media/js-icon.svg": "/static/media/js-icon.48259d749bad04ca096f5ba71d50bea9.svg",
+    "static/media/github-icon.svg": "/static/media/github-icon.b0926b4700115f7900da2671250b48ea.svg",
+    "static/media/link-icon.svg": "/static/media/link-icon.96554a593594e46200e7919b4826ca2c.svg",
+    "main.e5d1448d.css.map": "/static/css/main.e5d1448d.css.map",
+    "main.b9c0ffea.js.map": "/static/js/main.b9c0ffea.js.map",
+    "787.5809834d.chunk.js.map": "/static/js/787.5809834d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e5d1448d.css",
+    "static/js/main.b9c0ffea.js"
+  ]
+}
