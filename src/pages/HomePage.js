@@ -1,4 +1,4 @@
-import { Box, Alert, Button, Collapse, CircularProgress, Container, Grid, TextField, IconButton } from "@mui/material";
+import { Box, Alert, Button, Collapse, CircularProgress, Container, Grid, TextField, IconButton, Skeleton } from "@mui/material";
 import robotMoscot from "../assets/robot-mascot.svg";
 import ReactIcon from "../assets/React-icon.svg";
 import FirebaseIcon from "../assets/firebase.svg";
@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { collection, getDocs } from "@firebase/firestore";
 import { db } from "..";
 import validator from 'validator';
-import CloseIcon from '@mui/icons-material/Close';
+
 
 
 const icons = [ReactIcon, FirebaseIcon, JScon, HTMLIcon, CSSIcon, PythonIcon, FlutterIcon]
@@ -60,13 +60,13 @@ export default function HomePage() {
     }
 
 
-    return loading ? <CircularProgress /> : <Container sx={{ marginTop: "20px" }}>
+    return <Container sx={{ marginTop: "20px" }}>
 
 
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
             <Grid item xs={smallScreen ? 12 : 6}>
                 <p style={{ fontSize: "72px", fontWeight: "bold", margin: "0px" }}>Code and design <br /> useful tools...</p>
-               {/*  <Collapse in={alert}>
+                {/*  <Collapse in={alert}>
                     <Alert
                         severity="error"
                         action={
@@ -125,21 +125,38 @@ export default function HomePage() {
         </Grid>
         {/* TODO Create project pages */}
         <h2 style={{ textAlign: "center" }}>Projects</h2>
-        <Grid container spacing={2}>
-            {
-                Object.values(projectsData).map(project => {
-                    console.log(project)
-                    return <Grid item xs={smallScreen ? 12 : 6}>
-                        <a href={`projects/${project.id}`}>
-                            <Box sx={{ backgroundColor: "#141414", height: "500px", borderRadius: "5px", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "48px", fontWeight: "bold", flexDirection: "column" }}>
-                                {project.name}
-                                <img src={project.featuredImage} style={{ height: "300px", marginTop: "20px" }} />
-                            </Box>
-                        </a>
+        {
+            <Grid container spacing={2}>
+                {loading ? <>
+                    <Grid item xs={smallScreen ? 12 : 6}>
+                        <Skeleton
+                            sx={{ bgcolor: 'grey.900' }}
+                            variant="rectangular"
+                            height={500}
+                        />
                     </Grid>
-                })
-            }
-        </Grid>
+                    <Grid item xs={smallScreen ? 12 : 6}>
+                        <Skeleton
+                            sx={{ bgcolor: 'grey.900' }}
+                            variant="rectangular"
+                            height={500}
+                        />
+                    </Grid></>
+                    :
+                    Object.values(projectsData).map(project => {
+                        console.log(project)
+                        return <Grid item xs={smallScreen ? 12 : 6}>
+                            <a href={`projects/${project.id}`}>
+                                <Box sx={{ backgroundColor: "#141414", height: "500px", borderRadius: "5px", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "48px", fontWeight: "bold", flexDirection: "column" }}>
+                                    {project.name}
+                                    <img src={project.featuredImage} style={{ height: "300px", marginTop: "20px" }} />
+                                </Box>
+                            </a>
+                        </Grid>
+                    })
+                }
+            </Grid>
+        }
         <h2 style={{ textAlign: "center" }}>Related Technologies</h2>
         <div style={{ margin: 'auto', textAlign: "center" }}>
             {icons.map(icon => {
