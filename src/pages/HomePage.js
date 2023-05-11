@@ -1,4 +1,6 @@
 import { Box, Alert, Button, Collapse, CircularProgress, Container, Grid, TextField, IconButton, Skeleton } from "@mui/material";
+
+
 import robotMoscot from "../assets/robot-mascot.svg";
 import ReactIcon from "../assets/React-icon.svg";
 import FirebaseIcon from "../assets/firebase.svg";
@@ -12,7 +14,6 @@ import { useEffect, useState } from "react";
 import { collection, getDocs } from "@firebase/firestore";
 import { db } from "..";
 import validator from 'validator';
-
 
 
 const icons = [ReactIcon, FirebaseIcon, JScon, HTMLIcon, CSSIcon, PythonIcon, FlutterIcon]
@@ -55,6 +56,8 @@ export default function HomePage() {
 
         } else {
 
+
+
         }
 
     }
@@ -66,9 +69,15 @@ export default function HomePage() {
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
             <Grid item xs={smallScreen ? 12 : 6}>
                 <p style={{ fontSize: "72px", fontWeight: "bold", margin: "0px" }}>Code and design <br /> useful tools...</p>
-                {/*  <Collapse in={alert}>
+                <Collapse in={alert}>
                     <Alert
                         severity="error"
+                        sx={{
+                            mb: 2,
+                            borderRadius: "10px",
+                            backgroundColor: "white",
+                            opacity: "90%",
+                        }}
                         action={
                             <IconButton
                                 aria-label="close"
@@ -78,19 +87,13 @@ export default function HomePage() {
                                     setAlert(false);
                                 }}
                             >
-                                <CloseIcon fontSize="inherit" />
+                                ASDASD
                             </IconButton>
                         }
-                        sx={{
-                            mb: 2, borderRadius: "10px",
-                            backgroundColor: "white",
-                            opacity: "90%",
-                            color: "black",
-                        }}
                     >
                         {alertMessage}
                     </Alert>
-                </Collapse> */}
+                </Collapse>
                 <p style={{ fontSize: "24px", fontWeight: "bold", }}>Subscribe to my email list:</p>
 
                 {/* TODO Make email list form functional */}

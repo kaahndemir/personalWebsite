@@ -44,7 +44,26 @@ export const theme = createTheme({
     ].join(','),
   },
   components: {
-    
+    MuiAlert: {
+      styleOverrides: {
+        standardSuccess: {
+          backgroundColor: 'white',
+          color: 'black'
+        },
+        standardError: {
+          backgroundColor: 'white',
+          color: 'black'
+        },
+        standardWarning: {
+          backgroundColor: 'orange',
+          color: 'white'
+        },
+        standardInfo: {
+          backgroundColor: 'grey',
+          color: 'black'
+        }
+      }
+    },
     MuiTextField: {
       defaultProps: {
         sx: {
