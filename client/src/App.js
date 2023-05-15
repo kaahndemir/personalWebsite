@@ -1,13 +1,22 @@
 import logo from './logo.svg';
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material';
-import './App.css'; 
+import './App.css';
 import NoPage from './pages/NoPage';
 import HomePage from './pages/HomePage';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AboutPage from './pages/AboutPage';
 import ProjectPage from './pages/ProjectPage';
+import BlogPage from './pages/BlogPage';
+import CreatePostPage from './pages/CreatePostPage';
+import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
+import { UserContextProvider } from './UserContext';
+import EditPost from './pages/EditPost';
+import PostPage from './pages/PostPage';
+import CreateProject from './pages/CreateProjectPage';
+import EditProject from './pages/EditProject';
 
 
 
@@ -26,7 +35,7 @@ export const theme = createTheme({
     },
   },
   typography: {
-    allVariants: {  
+    allVariants: {
       color: "white",
       fontSize: "18px"
     },
@@ -44,11 +53,11 @@ export const theme = createTheme({
     ].join(','),
   },
   components: {
-    MuiAlert: {
+    MuiIcon: {
       styleOverrides: {
         standardSuccess: {
-          backgroundColor: 'white',
-          color: 'black'
+          backgroundColor: 'black',
+          color: 'white'
         },
         standardError: {
           backgroundColor: 'white',
@@ -84,7 +93,7 @@ export const theme = createTheme({
           ":hover": {
             backgroundColor: "#DB2551"
           },
-          margin:"5px 0",
+          margin: "5px 0",
           padding: "7px 15px"
         },
       },
@@ -95,23 +104,33 @@ export const theme = createTheme({
 
 function App() {
   return (
-    <div className="App" style={{backgroundColor: "black", height:'100%'}}>
-      <Header/>
+    <UserContextProvider>
+      <div className="App" style={{ backgroundColor: "black", height: '100%' }}>
+      <Header />
       <ThemeProvider theme={theme}><div className="App">
 
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/projects/:projectId" element={<ProjectPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/projects/:id" element={<ProjectPage />} />
+            <Route path="/createpost" element={<CreatePostPage />} />
+            <Route path="/createproject" element={<CreateProject />} />
+            <Route path="/editproject/:id" element={<EditProject />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/edit/:id" element={<EditPost />} />
+            <Route path="/post/:id" element={<PostPage />} />
             <Route path="*" element={<NoPage />} />
           </Routes>
         </BrowserRouter>
 
       </div>
       </ThemeProvider>
-      <Footer/>
+      <Footer />
     </div>
+    </UserContextProvider>
   );
 }
 

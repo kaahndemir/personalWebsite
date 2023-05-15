@@ -14,20 +14,39 @@ import { useEffect, useState } from "react";
 import { collection, getDocs } from "@firebase/firestore";
 import { db } from "..";
 import validator from 'validator';
-
+import CloseIcon from '@mui/icons-material/Close';
+import WarningIcon from '@mui/icons-material/Warning';
+import Post from "../Post";
+import Project from "../Project";
+import { Link } from "react-router-dom";
 
 const icons = [ReactIcon, FirebaseIcon, JScon, HTMLIcon, CSSIcon, PythonIcon, FlutterIcon]
 
 export default function HomePage() {
     const [loading, setLoading] = useState(true)
-    const [alert, setAlert] = useState(true);
+    const [formAlert, setAlert] = useState(false);
     const [projectsData, setProjectsData] = useState()
     const [alertMessage, setAlertMessage] = useState("");
+    const [posts, setPosts] = useState([]);
+    const [projects, setProjects] = useState([]);
 
     const { height, width } = useWindowDimensions();
     let smallScreen = width < 900
 
     useEffect(() => {
+        fetch('http://localhost:4000/post').then(response => {
+            response.json().then(posts => {
+                setPosts(posts);
+            });
+        });
+
+        fetch('http://localhost:4000/projects').then(response => {
+            response.json().then(projects => {
+                setProjects(projects);
+            });
+        })
+
+
         getDocs(collection(db, 'projects')).then((projectDoc => {
             let newProjectsData = {}
 
@@ -42,9 +61,11 @@ export default function HomePage() {
         }))
     }, [])
 
-    function handleSubmit(event) {
+    async function submitForm(event) {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
+
+
 
         if (!data.get('fullName')) {
             setAlertMessage("Enter your full name.")
@@ -56,6 +77,11 @@ export default function HomePage() {
 
         } else {
 
+            const response = await fetch('http://localhost:4000/formsubmit', {
+                method: 'POST',
+                body: JSON.stringify({ fullName: data.get('fullName'), emailAddress: data.get('email') }),
+                headers: { 'Content-Type': 'application/json' },
+            });
 
 
         }
@@ -69,35 +95,29 @@ export default function HomePage() {
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
             <Grid item xs={smallScreen ? 12 : 6}>
                 <p style={{ fontSize: "72px", fontWeight: "bold", margin: "0px" }}>Code and design <br /> useful tools...</p>
-                <Collapse in={alert}>
-                    <Alert
-                        severity="error"
-                        sx={{
-                            mb: 2,
-                            borderRadius: "10px",
-                            backgroundColor: "white",
-                            opacity: "90%",
-                        }}
-                        action={
-                            <IconButton
-                                aria-label="close"
-                                color="access"
-                                size="small"
-                                onClick={() => {
-                                    setAlert(false);
-                                }}
-                            >
-                                ASDASD
-                            </IconButton>
-                        }
-                    >
-                        {alertMessage}
-                    </Alert>
-                </Collapse>
                 <p style={{ fontSize: "24px", fontWeight: "bold", }}>Subscribe to my email list:</p>
 
+                <Collapse in={formAlert}>
+                    <Box sx={{ backgroundColor: "white", borderRadius: "10px", display: "flex", justifyContent: "space-between", padding: "0 20px" }}>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                            <WarningIcon style={{ fill: "black", marginRight: "10px" }} />
+                            <p style={{ color: "black" }}>{alertMessage}</p>
+                        </div>
+
+                        <IconButton
+                            aria-label="close"
+                            size="small"
+
+                            onClick={() => {
+                                setAlert(false);
+                            }}
+                        >
+                            <CloseIcon style={{ fill: "black" }} />
+                        </IconButton>
+                    </Box>
+                </Collapse>
                 {/* TODO Make email list form functional */}
-                <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                <Box component="form" onSubmit={submitForm} noValidate sx={{ mt: 1 }}>
                     <TextField
                         margin="dense"
                         autoComplete="given-name"
@@ -127,6 +147,7 @@ export default function HomePage() {
             </Grid>}
         </Grid>
         {/* TODO Create project pages */}
+        <Link to={"/createproject"}>Add New Project</Link>
         <h2 style={{ textAlign: "center" }}>Projects</h2>
         {
             <Grid container spacing={2}>
@@ -145,10 +166,17 @@ export default function HomePage() {
                             height={500}
                         />
                     </Grid></>
-                    :
-                    Object.values(projectsData).map(project => {
+                    : <Grid container>
+                        {
+                            projects.map(project => {
+                                console.log(project)
+                                return <Grid key={project._id} item xs={smallScreen ? 12 : 6} sx={{ padding: "10px 10px" }}><Project {...project} smallScreen /></Grid>
+                            })
+                        }
+                    </Grid>
+                    /* Object.values(projectsData).map(project => {
                         console.log(project)
-                        return <Grid item xs={smallScreen ? 12 : 6}>
+                        return <Grid key={project.id} item xs={smallScreen ? 12 : 6}>
                             <a href={`projects/${project.id}`}>
                                 <Box sx={{ backgroundColor: "#141414", height: "500px", borderRadius: "5px", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "48px", fontWeight: "bold", flexDirection: "column" }}>
                                     {project.name}
@@ -156,14 +184,46 @@ export default function HomePage() {
                                 </Box>
                             </a>
                         </Grid>
-                    })
+                    }) */
                 }
             </Grid>
         }
+
+        <h2 style={{ textAlign: "center" }}>Blog</h2>
+        {
+            <Grid container spacing={2}>
+                {loading ? <>
+                    <Grid item xs={smallScreen ? 12 : 6}>
+                        <Skeleton
+                            sx={{ bgcolor: 'grey.900' }}
+                            variant="rectangular"
+                            height={500}
+                        />
+                    </Grid>
+                    <Grid item xs={smallScreen ? 12 : 6}>
+                        <Skeleton
+                            sx={{ bgcolor: 'grey.900' }}
+                            variant="rectangular"
+                            height={500}
+                        />
+                    </Grid></>
+                    :
+                    <Grid container>
+                        {
+                            posts.map(post => {
+                                return <Grid key={post._id} item xs={smallScreen ? 12 : 6} sx={{ padding: "10px 10px" }}><Post {...post} smallScreen /></Grid>
+                            })
+                        }
+                    </Grid>
+                }
+            </Grid>
+        }
+
+
         <h2 style={{ textAlign: "center" }}>Related Technologies</h2>
         <div style={{ margin: 'auto', textAlign: "center" }}>
             {icons.map(icon => {
-                return <img style={{ width: "50px", margin: "0 10px" }} src={icon} />
+                return <img key={icon} style={{ width: "50px", margin: "0 10px" }} src={icon} />
             })}
 
         </div>

@@ -29,7 +29,7 @@ export default function Footer() {
             <h4>Contact:</h4>
             {
                 contactChannels.map(channel => {
-                    return <Box display={"flex"} sx={{ alignItems: "center" }}>
+                    return <Box key={channel.icon} display={"flex"} sx={{ alignItems: "center" }}>
                         <img style={{ width: "25px", margin: "5px 10px 5px 0" }} src={channel.icon} />
                         {channel.content}
                     </Box>
