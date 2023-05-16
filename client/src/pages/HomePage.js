@@ -34,13 +34,13 @@ export default function HomePage() {
     let smallScreen = width < 900
 
     useEffect(() => {
-        fetch('http://localhost:4000/post').then(response => {
+        fetch('https://codeoguz-website.onrender.com/post').then(response => {
             response.json().then(posts => {
                 setPosts(posts);
             });
         });
 
-        fetch('http://localhost:4000/projects').then(response => {
+        fetch('https://codeoguz-website.onrender.com/projects').then(response => {
             response.json().then(projects => {
                 setProjects(projects);
             });
@@ -77,7 +77,7 @@ export default function HomePage() {
 
         } else {
 
-            const response = await fetch('http://localhost:4000/formsubmit', {
+            const response = await fetch('https://codeoguz-website.onrender.com/formsubmit', {
                 method: 'POST',
                 body: JSON.stringify({ fullName: data.get('fullName'), emailAddress: data.get('email') }),
                 headers: { 'Content-Type': 'application/json' },
@@ -147,7 +147,6 @@ export default function HomePage() {
             </Grid>}
         </Grid>
         {/* TODO Create project pages */}
-        <Link to={"/createproject"}>Add New Project</Link>
         <h2 style={{ textAlign: "center" }}>Projects</h2>
         {
             <Grid container spacing={2}>

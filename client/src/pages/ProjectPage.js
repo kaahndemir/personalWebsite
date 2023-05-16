@@ -16,7 +16,7 @@ export default function ProjectPage() {
 
     useEffect(() => {
         console.log(id)
-        fetch(`http://localhost:4000/projects/${id}`)
+        fetch(`https://codeoguz-website.onrender.com/projects/${id}`)
             .then(response => {
                 response.json().then(projectInfo => {
                     setProjectInfo(projectInfo);
@@ -65,14 +65,14 @@ export default function ProjectPage() {
         <h2 style={{ textAlign: "center", overflowWrap: "break-word" }}>
             {projectInfo.title}
         </h2>
-        <Link className="edit-btn" to={`/editproject/${projectInfo._id}`}>
+        {userInfo.id === projectInfo.author._id && <Link className="edit-btn" to={`/editproject/${projectInfo._id}`}>
               <Button>
                 <EditIcon />
                 Edit this post
               </Button>
-            </Link>
+            </Link> }
         <div style={{ display: 'flex', justifyContent: "center" }}>
-            <img src={`http://localhost:4000/${projectInfo.cover}`} style={{ height: "300px" }} />
+            <img src={`https://codeoguz-website.onrender.com/${projectInfo.cover}`} style={{ height: "300px" }} />
         </div>
         {projectInfo.link && <a href={projectInfo.link} style={{ fontSize: "24px", display: "flex", alignContent: "center" }}> <img src={LinkIcon} style={{ height: "25px" }} /> visit website</a>}
         <div dangerouslySetInnerHTML={{ __html: projectInfo.content }} style={{ whiteSpace: "pre-line", fontSize: "24px", fontWeight: "medium" }} />
