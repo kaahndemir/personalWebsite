@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 export default function BlogPage() {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        fetch('https://codeoguz-website.onrender.com/post').then(response => {
+        fetch('https://codeoguz.onrender.com/post').then(response => {
             response.json().then(posts => {
                 setPosts(posts);
             });

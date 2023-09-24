@@ -10,12 +10,12 @@ export default function Project({ _id, title, summary, cover, content, createdAt
       <a href={`projects/${_id}`}>
         <Box sx={{ backgroundColor: "#141414", height: "500px", borderRadius: "5px", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "48px", fontWeight: "bold", flexDirection: "column" }}>
           {title}
-          <img src={`https://codeoguz-website.onrender.com/${cover}`} style={{ height: "300px", marginTop: "20px" }} />
+          <img src={`https://codeoguz.onrender.com/${cover}`} style={{ height: "300px", marginTop: "20px" }} />
         </Box>
       </a>
     
     /* <Link to={`/projects/${_id}`}>
-      <Box sx={{ backgroundPosition:"center", backgroundImage: `url(https://codeoguz-website.onrender.com/uploads/` + `${cover.split("\\")[1]})`, height: "500px", borderRadius: "5px", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "48px", fontWeight: "bold", flexDirection: "column" }}>
+      <Box sx={{ backgroundPosition:"center", backgroundImage: `url(https://codeoguz.onrender.com/uploads/` + `${cover.split("\\")[1]})`, height: "500px", borderRadius: "5px", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "48px", fontWeight: "bold", flexDirection: "column" }}>
         <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)', width:"100%", height:"100%", display:"flex", justifyContent:"center", alignItems:"center"}}>
           <h2 style={{textAlign:"center"}}>{title}</h2>
         </div>

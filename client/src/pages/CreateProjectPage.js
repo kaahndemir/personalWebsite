@@ -22,7 +22,7 @@ export default function CreateProject() {
         data.set('link', link);
         data.set('file', files[0]);
         
-        const response = await fetch('https://codeoguz-website.onrender.com/createproject', {
+        const response = await fetch('https://codeoguz.onrender.com/createproject', {
             method: 'POST',
             body: data,
             credentials: 'include',

@@ -7,7 +7,7 @@ export default function RegisterPage() {
 
     async function register() {
 
-        const response = await fetch('https://codeoguz-website.onrender.com/register', {
+        const response = await fetch('https://codeoguz.onrender.com/register', {
             method: 'POST',
             body: JSON.stringify({ username, password }),
             headers: { 'Content-Type': 'application/json' },

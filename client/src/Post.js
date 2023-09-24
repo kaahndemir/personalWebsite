@@ -8,7 +8,7 @@ export default function Post({ _id, title, summary, cover, content, createdAt, a
 
 
     <Link to={`/post/${_id}`}>
-      <Box sx={{ backgroundPosition:"center", backgroundImage: `url(https://codeoguz-website.onrender.com/uploads/` + `${cover.split("\\")[1]})`, height: "500px", borderRadius: "5px", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "48px", fontWeight: "bold", flexDirection: "column" }}>
+      <Box sx={{ backgroundPosition:"center", backgroundImage: `url(https://codeoguz.onrender.com/uploads/` + `${cover.split("\\")[1]})`, height: "500px", borderRadius: "5px", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "48px", fontWeight: "bold", flexDirection: "column" }}>
         <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)', width:"100%", height:"100%", display:"flex", justifyContent:"center", alignItems:"center"}}>
           <h2 style={{textAlign:"center"}}>{title}</h2>
         </div>

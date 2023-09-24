@@ -34,16 +34,15 @@ export default function HomePage() {
     let smallScreen = width < 900
 
     useEffect(() => {
-        fetch('https://codeoguz-website.onrender.com/post').then(response => {
+        fetch('https://codeoguz.onrender.com/post').then(response => {
             response.json().then(posts => {
                 setPosts(posts);
             });
         });
         
-        fetch('https://codeoguz-website.onrender.com/projects').then(response => {
-            console.log(response.json())
-
+        fetch('https://codeoguz.onrender.com/projects').then(response => {
             response.json().then(projects => {
+                console.log(projects)
                 setProjects([...projects]);
             });
         })
@@ -65,7 +64,7 @@ export default function HomePage() {
 
         } else {
 
-            const response = await fetch('https://codeoguz-website.onrender.com/formsubmit', {
+            const response = await fetch('https://codeoguz.onrender.com/formsubmit', {
                 method: 'POST',
                 body: JSON.stringify({ fullName: data.get('fullName'), emailAddress: data.get('email') }),
                 headers: { 'Content-Type': 'application/json' },

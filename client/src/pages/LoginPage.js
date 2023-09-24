@@ -2,15 +2,20 @@ import {useContext, useState} from "react";
 import {Navigate} from "react-router-dom";
 import { Container, TextField, Grid } from "@mui/material"
 import {UserContext} from "../UserContext";
+import { CookiesProvider, useCookies } from "react-cookie";
+
 
 export default function LoginPage() {
   const [username,setUsername] = useState('');
   const [password,setPassword] = useState('');
   const [redirect,setRedirect] = useState(false);
   const {setUserInfo} = useContext(UserContext);
+  const [cookies, setCookie] = useCookies();
+
   async function login(ev) {
+  
     ev.preventDefault();
-    const response = await fetch('https://codeoguz-website.onrender.com/login', {
+    const response = await fetch('https://codeoguz.onrender.com/login', {
       method: 'POST',
       body: JSON.stringify({username, password}),
       headers: {'Content-Type':'application/json'},
@@ -19,6 +24,9 @@ export default function LoginPage() {
     if (response.ok) {
       response.json().then(userInfo => {
         setUserInfo(userInfo);
+
+        setCookie("user", userInfo, { path: "/" });
+
         setRedirect(true);
       });
     } else {
@@ -47,15 +55,11 @@ export default function LoginPage() {
                 className="input"
                 placeholder="Password"
                 value={password}
-                
                 onChange={ev => setPassword(ev.target.value)} />
         </Grid>
         <Grid item>
             <button onClick={login}>Register</button>
         </Grid>
-
-
-
     </Grid>
 </Container>
   );

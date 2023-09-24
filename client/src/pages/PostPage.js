@@ -11,7 +11,7 @@ export default function PostPage() {
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
   useEffect(() => {
-    fetch(`https://codeoguz-website.onrender.com/post/${id}`)
+    fetch(`https://codeoguz.onrender.com/post/${id}`)
       .then(response => {
         response.json().then(postInfo => {
           setPostInfo(postInfo);
@@ -24,7 +24,7 @@ export default function PostPage() {
   return (
     <Container>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <img style={{ maxWidth: "100%", maxHeight: "600px" }} src={`https://codeoguz-website.onrender.com/${postInfo.cover}`} alt="" />
+        <img style={{ maxWidth: "100%", maxHeight: "600px" }} src={`https://codeoguz.onrender.com/${postInfo.cover}`} alt="" />
       </div>
 
 

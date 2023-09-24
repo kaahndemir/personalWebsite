@@ -13,7 +13,7 @@ export default function Header() {
             <a href="/"><img style={{ width: "160px" }} src={codeoguzIcon} /></a>
             <Grid sx={{ display: "flex", justifyContent: "right" }} container spacing={2}>
                 <Grid item>
-                    <a href="about">About</a>
+                    <a href="/about">About</a>
                 </Grid>
                 <Grid item>
                     {username && username}
