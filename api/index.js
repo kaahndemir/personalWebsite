@@ -17,12 +17,13 @@ const Project = require('./models/Project');
 const salt = bcrypt.genSaltSync(10);
 const secret = 'asdfe45we45w345wegw345werjktjwertkj';
 
-app.use(cors({ credentials: true, origin: 'https://codeoguz-website.web.app' }));
+app.use(cors({ credentials: true, origin: 'https://codeoguz.com' }));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-mongoose.connect('mongodb+srv://codeoguz:Oguz159753kaan@cluster0.hwycuop.mongodb.net/?retryWrites=true&w=majority');
+
+mongoose.connect(process.env.REACT_APP_API);
 
 app.post('/register', async (req, res) => {
   const { username, password } = req.body;

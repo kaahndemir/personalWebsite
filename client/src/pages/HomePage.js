@@ -39,26 +39,14 @@ export default function HomePage() {
                 setPosts(posts);
             });
         });
-
+        
         fetch('https://codeoguz-website.onrender.com/projects').then(response => {
+            console.log(response.json())
+
             response.json().then(projects => {
-                setProjects(projects);
+                setProjects([...projects]);
             });
         })
-
-
-        getDocs(collection(db, 'projects')).then((projectDoc => {
-            let newProjectsData = {}
-
-            projectDoc.docs.map((projectDoc => {
-                newProjectsData[projectDoc.data().id] = projectDoc.data()
-            }))
-
-            console.log(newProjectsData)
-
-            setProjectsData(newProjectsData)
-            setLoading(false)
-        }))
     }, [])
 
     async function submitForm(event) {
@@ -150,7 +138,7 @@ export default function HomePage() {
         <h2 style={{ textAlign: "center" }}>Projects</h2>
         {
             <Grid container spacing={2}>
-                {loading ? <>
+                {!projects ? <>
                     <Grid item xs={smallScreen ? 12 : 6}>
                         <Skeleton
                             sx={{ bgcolor: 'grey.900' }}
@@ -191,7 +179,7 @@ export default function HomePage() {
         <h2 style={{ textAlign: "center" }}>Blog</h2>
         {
             <Grid container spacing={2}>
-                {loading ? <>
+                {!posts ? <>
                     <Grid item xs={smallScreen ? 12 : 6}>
                         <Skeleton
                             sx={{ bgcolor: 'grey.900' }}
