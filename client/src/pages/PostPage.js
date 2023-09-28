@@ -21,6 +21,8 @@ export default function PostPage() {
 
   if (!postInfo) return '';
 
+
+
   return (
     <Container>
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -34,7 +36,7 @@ export default function PostPage() {
         <time>{formatISO9075(new Date(postInfo.createdAt))}</time>
 
         <div>
-          <div className="author">by @{postInfo.author.username}</div>
+          {/* <div className="author">by @{postInfo.author.username}</div>
           {userInfo.id === postInfo.author._id && (
 
             <Link className="edit-btn" to={`/edit/${postInfo._id}`}>
@@ -43,7 +45,7 @@ export default function PostPage() {
                 Edit this post
               </Button>
             </Link>
-          )}
+          )} */}
         </div>
       </div>
 

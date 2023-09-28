@@ -8,8 +8,6 @@ export const UserContext = createContext({});
 export function UserContextProvider({children}) {
   const [cookies, setCookie] = useCookies();
 
-  console.log(cookies)
-
   const [userInfo, setUserInfo] = useState(cookies.user ? cookies.user : {});
 
   return (

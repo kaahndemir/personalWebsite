@@ -17,6 +17,7 @@ import EditPost from './pages/EditPost';
 import PostPage from './pages/PostPage';
 import CreateProject from './pages/CreateProjectPage';
 import EditProject from './pages/EditProject';
+import SitemapPage from './pages/Sitemap';
 
 
 
@@ -103,33 +104,35 @@ export const theme = createTheme({
 
 
 function App() {
+  
   return (
     <UserContextProvider>
       <div className="App" style={{ backgroundColor: "black", height: '100%' }}>
-      <Header />
-      <ThemeProvider theme={theme}><div className="App">
+        <Header />
+        <ThemeProvider theme={theme}><div className="App">
 
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/projects/:id" element={<ProjectPage />} />
-            <Route path="/createpost" element={<CreatePostPage />} />
-            <Route path="/createproject" element={<CreateProject />} />
-            <Route path="/editproject/:id" element={<EditProject />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/edit/:id" element={<EditPost />} />
-            <Route path="/post/:id" element={<PostPage />} />
-            <Route path="*" element={<NoPage />} />
-          </Routes>
-        </BrowserRouter>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/projects/:id" element={<ProjectPage />} />
+              <Route path="/createpost" element={<CreatePostPage />} />
+              <Route path="/createproject" element={<CreateProject />} />
+              <Route path="/editproject/:id" element={<EditProject />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/edit/:id" element={<EditPost />} />
+              <Route path="/post/:id" element={<PostPage />} />
+              <Route path="/sitemap" element={<SitemapPage />} />
+              <Route path="*" element={<NoPage />} />
+            </Routes>
+          </BrowserRouter>
 
+        </div>
+        </ThemeProvider>
+        <Footer />
       </div>
-      </ThemeProvider>
-      <Footer />
-    </div>
     </UserContextProvider>
   );
 }
