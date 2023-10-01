@@ -39,7 +39,7 @@ export default function HomePage() {
                 setPosts(posts);
             });
         });
-        
+
         fetch('https://codeoguz.onrender.com/projects').then(response => {
             response.json().then(projects => {
                 console.log(projects)
