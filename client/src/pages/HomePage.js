@@ -33,9 +33,11 @@ export default function HomePage() {
     const { height, width } = useWindowDimensions();
     let smallScreen = width < 900
 
+
     useEffect(() => {
-        fetch('https://codeoguz.onrender.com/post').then(response => {
+        fetch('http://localhost:1337/api/posts/').then(response => {
             response.json().then(posts => {
+                console.log(posts)
                 setPosts(posts);
             });
         });
@@ -52,8 +54,6 @@ export default function HomePage() {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
 
-
-
         if (!data.get('fullName')) {
             setAlertMessage("Enter your full name.")
             setAlert(true)
@@ -63,14 +63,11 @@ export default function HomePage() {
             setAlert(true)
 
         } else {
-
             const response = await fetch('https://codeoguz.onrender.com/formsubmit', {
                 method: 'POST',
                 body: JSON.stringify({ fullName: data.get('fullName'), emailAddress: data.get('email') }),
                 headers: { 'Content-Type': 'application/json' },
             });
-
-
         }
 
     }
@@ -196,7 +193,7 @@ export default function HomePage() {
                     :
                     <Grid container>
                         {
-                            posts.map(post => {
+                            posts?.data?.map(post => {
                                 return <Grid key={post._id} item xs={smallScreen ? 12 : 6} sx={{ padding: "10px 10px" }}><Post {...post} smallScreen /></Grid>
                             })
                         }

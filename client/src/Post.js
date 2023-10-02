@@ -2,13 +2,13 @@ import { formatISO9075 } from "date-fns";
 import { Box, Container, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export default function Post({ _id, title, summary, cover, content, createdAt, author }, smallScreen) {
+export default function Post({ _id, title, summary, cover, content, createdAt, author, featuredImage }, smallScreen) {
 
   return (
 
 
     <Link to={`/post/${_id}`}>
-      <Box sx={{ objectFit: "contain", backgroundPosition: "center", backgroundImage: `url(https://codeoguz.onrender.com/uploads/` + `${cover.split("\\")[1]})`, height: "500px", borderRadius: "5px", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "48px", fontWeight: "bold", flexDirection: "column" }}>
+      <Box sx={{ objectFit: "contain", backgroundPosition: "center", backgroundImage: `url(${featuredImage})`, height: "500px", borderRadius: "5px", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "48px", fontWeight: "bold", flexDirection: "column" }}>
         <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)', width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
           <h2 style={{ textAlign: "center" }}>{title}</h2>
         </div>
