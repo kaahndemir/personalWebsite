@@ -25,7 +25,7 @@ export default function PostPage() {
 
   return (
     <Container>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div autofocus style={{ display: "flex", justifyContent: "center" }}>
         <img style={{ maxWidth: "100%", maxHeight: "600px" }} src={`https://codeoguz.onrender.com/${postInfo.cover}`} alt="" />
       </div>
 

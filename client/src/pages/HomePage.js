@@ -37,14 +37,13 @@ export default function HomePage() {
     useEffect(() => {
         fetch('http://localhost:1337/api/posts/').then(response => {
             response.json().then(posts => {
-                console.log(posts)
-                setPosts(posts);
+                setPosts(posts.data);
+                console.log(posts.data)
             });
         });
 
         fetch('https://codeoguz.onrender.com/projects').then(response => {
             response.json().then(projects => {
-                console.log(projects)
                 setProjects([...projects]);
             });
         })
@@ -152,7 +151,6 @@ export default function HomePage() {
                     : <Grid container>
                         {
                             projects.map(project => {
-                                console.log(project)
                                 return <Grid key={project._id} item xs={smallScreen ? 12 : 6} sx={{ padding: "10px 10px" }}><Project {...project} smallScreen /></Grid>
                             })
                         }
@@ -193,8 +191,8 @@ export default function HomePage() {
                     :
                     <Grid container>
                         {
-                            posts?.data?.map(post => {
-                                return <Grid key={post._id} item xs={smallScreen ? 12 : 6} sx={{ padding: "10px 10px" }}><Post {...post} smallScreen /></Grid>
+                            posts.map((post, i) => {
+                                return <Grid key={i} item xs={smallScreen ? 12 : 6} sx={{ padding: "10px 10px" }}><Post {...post.attributes} smallScreen /></Grid>
                             })
                         }
                     </Grid>
@@ -205,8 +203,8 @@ export default function HomePage() {
 
         <h2 style={{ textAlign: "center" }}>Related Technologies</h2>
         <div style={{ margin: 'auto', textAlign: "center" }}>
-            {icons.map(icon => {
-                return <img key={icon} style={{ width: "50px", margin: "0 10px" }} src={icon} />
+            {icons.map((icon, i) => {
+                return <img key={i} style={{ width: "50px", margin: "0 10px" }} src={icon} />
             })}
 
         </div>

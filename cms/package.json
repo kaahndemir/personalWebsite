@@ -12,9 +12,11 @@
   "dependencies": {
     "@strapi/plugin-i18n": "4.14.0",
     "@strapi/plugin-users-permissions": "4.14.0",
+    "@strapi/provider-upload-cloudinary": "^4.14.3",
     "@strapi/strapi": "4.14.0",
     "better-sqlite3": "8.6.0",
-    "node-gyp": "^9.4.0"
+    "node-gyp": "^9.4.0",
+    "pg": "^8.11.3"
   },
   "author": {
     "name": "A Strapi developer"
